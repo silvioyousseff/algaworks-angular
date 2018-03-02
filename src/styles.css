@@ -8,11 +8,15 @@ body {
 a {
     color: #337ab7;
     text-decoration: none;
-  }
+}
   
-  a:hover, a:focus {
+a:hover, a:focus {
     text-decoration: underline;
-  }
+}
+
+.ui-dropdown-filter-container {
+    width: 100%;
+}
 
 label {
     font-weight: bold;
