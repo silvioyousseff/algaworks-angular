@@ -1,0 +1,28 @@
+<p-dataTable [value]="lancamentos" [paginator]="true" [rows]="4" [responsive]="true">
+  <p-column field="pessoa" header="Pessoa"></p-column>
+  <p-column field="descricao" header="Descrição"></p-column>
+  <p-column field="valor" header="Vencimento" styleClass="col-data">
+    <ng-template let-lanc="rowData" pTemplate="body">
+      <!--cria uma variavel interna com let, rowData eh os valores da linha -->
+      <span>{{lanc.dataVencimento | date:'dd/MM/yyyy'}}</span>
+    </ng-template>
+  </p-column>
+  <p-column field="valor" header="Pagamento" styleClass="col-data">
+    <ng-template let-lanc="rowData" pTemplate="body">
+      <!--cria uma variavel interna com let, rowData eh os valores da linha -->
+      <span>{{lanc.dataPagamento | date:'dd/MM/yyyy'}}</span>
+    </ng-template>
+  </p-column>
+  <p-column field="valor" header="Valor" styleClass="col-valor">
+    <ng-template let-lanc="rowData" pTemplate="body">
+      <!--cria uma variavel interna com let, rowData eh os valores da linha -->
+      <span [style.color]="lanc.tipo === 'DESPESA' ? 'red' : 'blue'">{{lanc.valor}}</span>
+    </ng-template>
+  </p-column>
+  <p-column styleClass="col-acoes">
+    <ng-template pTemplate="body">
+      <button pButton icon="fa-pencil" pTooltip="Editar" tooltipPosition="top"></button>
+      <button pButton icon="fa-trash" pTooltip="Excluir" tooltipPosition="top"></button>
+    </ng-template>
+  </p-column>
+</p-dataTable>

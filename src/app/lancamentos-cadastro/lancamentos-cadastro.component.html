@@ -1,6 +1,6 @@
 <div class="container">
 
-  <form action="">
+  <form action="" #formLancamentos="ngForm">
 
     <div class="ui-g">
 
@@ -16,7 +16,8 @@
 
       <div class="ui-g-6 ui-md-2 ui-fluid">
         <label>Vencimento</label>
-        <p-calendar dateFormat="dd/mm/yy"></p-calendar>
+        <p-calendar dateFormat="dd/mm/yy" ngModel name="vencimento" #vencimento="ngModel" required></p-calendar>
+        <app-message-required [controler]="vencimento"></app-message-required>
       </div>
       <div class="ui-g-6 ui-md-2 ui-fluid">
         <label>{{ tipo.value === 'RECEITA' ? 'Recebimento' : 'Pagamento' }}</label>
@@ -26,36 +27,31 @@
         <label>Descrição</label>
         <input pInputText type="text" name="descricao" ngModel #descricao="ngModel" required minlength="5">
 
-        <app-message [controler]="descricao" error="required" message="Campo obrigatório"></app-message>
-        <app-message [controler]="descricao" error="minlength" 
-            message="Minimo de {{descricao.errors?.minlength?.requiredLength}} caracteres"></app-message>
-      
+        <app-message-required [controler]="descricao"></app-message-required>
+        <app-message-minimo-caracteres [controler]="descricao"></app-message-minimo-caracteres>
+
       </div>
       <div class="ui-g-12 ui-md-3 ui-fluid">
         <label>Valor</label>
-        <input pInputText type="text" placeholder="0,00"
-          currencyMask 
-          [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"
-          maxlength="12"
-          name="valor"
-          ngModel>
+        <input pInputText type="text" placeholder="0,00" currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"
+          maxlength="12" name="valor" ngModel #valor="ngModel" required>
+
+        <app-message-required [controler]="valor"></app-message-required>
       </div>
       <div class="ui-g-12 ui-md-6 ui-fluid">
         <label>Categoria</label>
-        <p-dropdown [options]="categorias" placeholder="Selecione"
-          [autoWidth]="false" #categoria></p-dropdown>
+        <p-dropdown [options]="categorias" placeholder="Selecione" [autoWidth]="false" name="categoria" ngModel required></p-dropdown>
       </div>
       <div class="ui-g-12 ui-md-6 ui-fluid">
         <label>Pessoa</label>
-        <p-dropdown [options]="pessoas" placeholder="Selecione"
-          [autoWidth]="false" [filter]="true" #pessoa></p-dropdown>
+        <p-dropdown [options]="pessoas" placeholder="Selecione" [autoWidth]="false" [filter]="true" ngModel name="pessoa" required></p-dropdown>
       </div>
       <div class="ui-g-12 ui-fluid">
         <label>Observação</label>
         <textarea pInputTextarea rows="3"></textarea>
       </div>
       <div class="ui-g-12">
-        <button pButton type="submit" label="Salvar"></button>
+        <button [disabled]="formLancamentos.invalid" pButton type="submit" label="Salvar"></button>
         <button pButton type="button" label="Novo" class="ui-button-info"></button>
         <a href="javascript:;">Voltar para a pesquisa</a>
       </div>

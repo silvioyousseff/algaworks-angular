@@ -20,6 +20,9 @@ import { CurrencyMaskModule } from "ng2-currency-mask";
 import { PessoasCadastroComponent } from './pessoas-cadastro/pessoas-cadastro.component';
 import {InputMaskModule} from 'primeng/inputmask';
 import { MessageComponent } from './message/message.component';
+import { MessageRequiredComponent } from './message-required/message-required.component';
+import { MessageMinimoCaracteresComponent } from './message-minimo-caracteres/message-minimo-caracteres.component';
+import { LancamentosGridComponent } from './lancamentos-grid/lancamentos-grid.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +32,10 @@ import { MessageComponent } from './message/message.component';
     PessoasPesquisaComponent,
     LancamentosCadastroComponent,
     PessoasCadastroComponent,
-    MessageComponent
+    MessageComponent,
+    MessageRequiredComponent,
+    MessageMinimoCaracteresComponent,
+    LancamentosGridComponent
   ],
   imports: [
     BrowserModule,
