@@ -23,6 +23,7 @@ import { MessageComponent } from './message/message.component';
 import { MessageRequiredComponent } from './message-required/message-required.component';
 import { MessageMinimoCaracteresComponent } from './message-minimo-caracteres/message-minimo-caracteres.component';
 import { LancamentosGridComponent } from './lancamentos-grid/lancamentos-grid.component';
+import { PessoasGridComponent } from './pessoas-grid/pessoas-grid.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { LancamentosGridComponent } from './lancamentos-grid/lancamentos-grid.co
     MessageComponent,
     MessageRequiredComponent,
     MessageMinimoCaracteresComponent,
-    LancamentosGridComponent
+    LancamentosGridComponent,
+    PessoasGridComponent
   ],
   imports: [
     BrowserModule,

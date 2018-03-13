@@ -7,15 +7,15 @@
 
     <div class="ui-g-12 ui-fluid">
       <label>Descrição</label>
-      <input pInputText type="text">
+      <input pInputText type="text" ngModel name="descricao" #descricao="ngModel">
     </div>
 
     <div class="ui-g-12">
       <label style="display: block">Vencimento</label>
-      <input pInputText type="text" style="width: 95px">
+      <input pInputText type="text" style="width: 95px" ngModel name="vencimento" #vencimento="ngModel">
 
       <label>até</label>
-      <input pInputText type="text" style="width: 95px">
+      <input pInputText type="text" style="width: 95px" ngModel name="data" #data="ngModel">
     </div>
 
     <div class="ui-g-12">

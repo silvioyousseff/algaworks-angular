@@ -1,0 +1,20 @@
+<p-dataTable [value]="pessoas" [paginator]="true" [rows]="4" [responsive]="true">
+  <p-column field="nome" header="Nome"></p-column>
+  <p-column field="cidade" header="Cidade"></p-column>
+  <p-column field="estado" header="Estado"></p-column>
+  <p-column field="ativo" header="Status" styleClass="col-data">
+    <ng-template let-pess="rowData" pTemplate="body">
+      <!--cria uma variavel interna com let, rowData eh os valores da linha -->
+      <a href="javascript:;" [style.color]="pess.ativo == true ? 'blue' : 'red'" [pTooltip]="pess.ativo ? 'Desativar' : 'Ativar'"
+        tooltipPosition="top">
+        {{ pess.ativo ? 'Ativo' : 'Inativo' }}
+      </a>
+    </ng-template>
+  </p-column>
+  <p-column styleClass="col-acoes">
+    <ng-template pTemplate="body">
+      <button pButton icon="fa-pencil" pTooltip="Editar" tooltipPosition="top"></button>
+      <button pButton icon="fa-trash" pTooltip="Excluir" tooltipPosition="top"></button>
+    </ng-template>
+  </p-column>
+</p-dataTable>
