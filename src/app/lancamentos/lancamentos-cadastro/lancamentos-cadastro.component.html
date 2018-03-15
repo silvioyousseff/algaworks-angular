@@ -17,7 +17,7 @@
       <div class="ui-g-6 ui-md-2 ui-fluid">
         <label>Vencimento</label>
         <p-calendar dateFormat="dd/mm/yy" ngModel name="vencimento" #vencimento="ngModel" required></p-calendar>
-        <app-message-required [controler]="vencimento"></app-message-required>
+       <!-- <app-message-required [controler]="vencimento"></app-message-required> -->
       </div>
 
       <div class="ui-g-6 ui-md-2 ui-fluid">
@@ -29,8 +29,8 @@
         <label>Descrição</label>
         <input pInputText type="text" name="descricao" ngModel #descricao="ngModel" required minlength="5">
 
-        <app-message-required [controler]="descricao"></app-message-required>
-        <app-message-minimo-caracteres [controler]="descricao"></app-message-minimo-caracteres>
+      <!--  <app-message-required [controler]="descricao"></app-message-required>
+        <app-message-minimo-caracteres [controler]="descricao"></app-message-minimo-caracteres> -->
 
       </div>
 
@@ -39,7 +39,7 @@
         <input pInputText type="text" placeholder="0,00" currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"
           maxlength="12" name="valor" ngModel #valor="ngModel" required>
 
-        <app-message-required [controler]="valor"></app-message-required>
+      <!--  <app-message-required [controler]="valor"></app-message-required> -->
       </div>
 
       <div class="ui-g-12 ui-md-6 ui-fluid">
