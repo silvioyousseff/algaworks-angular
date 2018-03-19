@@ -18,6 +18,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { PessoasPesquisaComponent } from './pessoas-pesquisa/pessoas-pesquisa.component';
 import { PessoasCadastroComponent } from './pessoas-cadastro/pessoas-cadastro.component';
 import { PessoasGridComponent } from './pessoas-grid/pessoas-grid.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
@@ -36,6 +37,8 @@ import { PessoasGridComponent } from './pessoas-grid/pessoas-grid.component';
     DropdownModule,
     CurrencyMaskModule,
     InputMaskModule,
+
+    SharedModule
   ],
   declarations: [
     PessoasPesquisaComponent,
