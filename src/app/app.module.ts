@@ -1,3 +1,4 @@
+import { LancamentoService } from './lancamentos/lancamento.service';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 
@@ -8,6 +9,7 @@ import { CoreModule } from './core/core.module';
 import { MessageComponent } from './message/message.component';
 import { PessoasModule } from './pessoas/pessoas.module';
 import { LancamentosModule } from './lancamentos/lancamentos.module';
+import { HttpModule } from '@angular/http';
 
 
 @NgModule({
@@ -18,11 +20,12 @@ import { LancamentosModule } from './lancamentos/lancamentos.module';
     PessoasModule,
     LancamentosModule,
     CoreModule,
+    HttpModule,
 
     BrowserModule,
     BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [LancamentoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
