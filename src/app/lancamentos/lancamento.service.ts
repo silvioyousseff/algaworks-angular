@@ -45,9 +45,11 @@ export class LancamentoService {
         const responseJson  = response.json();
         const lancamentos = responseJson.content;
 
+        console.log(responseJson)
+
         const resultado = {
           lancamentos: lancamentos,
-          total: responseJson.totalElements
+          totalRegistros: responseJson.totalElements
         }
 
         return resultado;
