@@ -56,7 +56,7 @@
         <p-column field="valor" header="Valor" styleClass="col-valor">
           <ng-template let-lanc="rowData" pTemplate="body">
             <!--cria uma variavel interna com let, rowData eh os valores da linha -->
-            <span [style.color]="lanc.tipo === 'DESPESA' ? 'red' : 'blue'">{{lanc.valor}}</span>
+            <span [style.color]="lanc.tipo === 'DESPESA' ? 'red' : 'blue'">{{lanc.valor | number:'1.2-2'}}</span>
           </ng-template>
         </p-column>
         <p-column styleClass="col-acoes">
