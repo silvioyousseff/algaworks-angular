@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Response } from '@angular/http';
 
 import { ToastyService } from 'ng2-toasty';
 
@@ -7,14 +8,27 @@ export class ErrorHandlerService {
 
   constructor(private toastyService: ToastyService) { }
 
-  handle(error: any){
+  handle(error: any) {
     let msg: string;
 
-    if(typeof error === "string"){
+    if (typeof error === "string") {
       msg = error;
+
+    } else if (error instanceof Response && error.status >= 400 && error.status <= 499) {
+      let errors;
+      msg = 'Ocorreu um erro ao processar a sua solicitação';
+
+      try {
+        errors = error.json();
+
+        msg = errors[0].erroUsuario;
+      } catch (e) { }
+
+      console.error('Ocorreu um erro 400 ', error);
+
     } else {
-      msg = "Erro ao processar serviço remoto, tente novamente";
-      console.log("Ocorreu um erro:", error);
+      msg = 'Erro ao processar serviço remoto. Tente novamente.';
+      console.error('Ocorreu um erro', error);
     }
 
     this.toastyService.error(msg);
