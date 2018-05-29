@@ -36,7 +36,7 @@
           <ng-template let-pess="rowData" pTemplate="body">
             <!--cria uma variavel interna com let, rowData eh os valores da linha -->
             <a href="javascript:;" [style.color]="pess.ativo == true ? 'blue' : 'red'" [pTooltip]="pess.ativo ? 'Desativar' : 'Ativar'"
-              tooltipPosition="top">
+              tooltipPosition="top" (click)="alterarStatusPessoa(pess);">
               {{ pess.ativo ? 'Ativo' : 'Inativo' }}
             </a>
           </ng-template>
