@@ -1,3 +1,4 @@
+import { CategoriasService } from './../categorias/categorias.service';
 import { NgModule, LOCALE_ID } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -33,6 +34,7 @@ registerLocaleData(ptBr);
     LancamentoService,
     PessoaService,
     ConfirmationService,
+    CategoriasService,
     { provide: LOCALE_ID, useValue: 'pt-PT' }
   ],
 })
