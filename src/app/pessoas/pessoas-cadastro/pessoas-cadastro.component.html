@@ -1,6 +1,6 @@
 <div class="container">
 
-  <form action="" #formPessoas="ngForm">
+  <form #formPessoas="ngForm" autocomplete="off" (ngSubmit)="salvarPessoa(formPessoas)">
 
     <div class="ui-g">
 
@@ -10,7 +10,8 @@
 
       <div class="ui-g-12 ui-sm-12 ui-fluid">
         <label>Nome</label>
-        <input pInputText type="text" ngModel name="nome" #nome="ngModel" required minlength="5">
+        <input pInputText type="text" [(ngModel)]="pessoa.nome" name="nome" 
+          #nome="ngModel" required minlength="5">
 
         <app-message-required [controler]="nome"></app-message-required>
         <app-message-minimo-caracteres [controler]="nome"></app-message-minimo-caracteres> 
@@ -19,7 +20,8 @@
 
       <div class="ui-g-9 ui-sm-12 ui-fluid">
         <label>Logradouro</label>
-        <input pInputText type="text" ngModel name="logradouro" #logradouro="ngModel" required minlength="5">
+        <input pInputText type="text" [(ngModel)]="pessoa.endereco.logradouro" name="logradouro" 
+          #logradouro="ngModel" required minlength="5">
 
         <app-message-required [controler]="logradouro"></app-message-required>
         <app-message-minimo-caracteres [controler]="logradouro"></app-message-minimo-caracteres> 
@@ -28,7 +30,8 @@
 
       <div class="ui-g-3 ui-sm-12 ui-fluid">
         <label>Número</label>
-        <input pInputText type="text" ngModel name="numero" #numero="ngModel" required>
+        <input pInputText type="text" [(ngModel)]="pessoa.endereco.numero" name="numero" 
+          #numero="ngModel" required>
 
         <app-message-required [controler]="numero"></app-message-required>
         <app-message-minimo-caracteres [controler]="numero"></app-message-minimo-caracteres> 
@@ -37,12 +40,14 @@
 
       <div class="ui-g-6 ui-sm-12 ui-fluid">
         <label>Complemento</label>
-        <input pInputText type="text" ngModel name="complemento" #complemento="ngModel">
+        <input pInputText type="text" [(ngModel)]="pessoa.endereco.complemento" name="complemento" 
+          #complemento="ngModel">
       </div>
 
       <div class="ui-g-4 ui-sm-12 ui-fluid">
         <label>Bairro</label>
-        <input pInputText type="text" ngModel name="bairro" #bairro="ngModel" required minlength="5">
+        <input pInputText type="text" [(ngModel)]="pessoa.endereco.bairro" name="bairro" 
+          #bairro="ngModel" required minlength="5">
 
         <app-message-required [controler]="bairro"></app-message-required>
         <app-message-minimo-caracteres [controler]="bairro"></app-message-minimo-caracteres> 
@@ -51,7 +56,8 @@
 
       <div class="ui-g-2 ui-sm-12 ui-fluid">
         <label>CEP</label>
-        <p-inputMask mask="99999-999" ngModel name="cep" #cep="ngModel" required></p-inputMask>
+        <p-inputMask mask="99999-999" [(ngModel)]="pessoa.endereco.cep" name="cep" 
+          #cep="ngModel" required></p-inputMask>
 
         <app-message-required [controler]="cep"></app-message-required> 
 
@@ -59,7 +65,8 @@
 
       <div class="ui-g-6 ui-sm-12 ui-fluid">
         <label>Cidade</label>
-        <input pInputText type="text" ngModel name="cidade" #cidade="ngModel" required minlength="5">
+        <input pInputText type="text" [(ngModel)]="pessoa.endereco.cidade" name="cidade" 
+          #cidade="ngModel" required minlength="5">
 
         <app-message-required [controler]="cidade"></app-message-required>
         <app-message-minimo-caracteres [controler]="cidade"></app-message-minimo-caracteres> 
@@ -68,7 +75,8 @@
 
       <div class="ui-g-6 ui-sm-12 ui-fluid">
         <label>Estado</label>
-        <input pInputText type="text" ngModel name="estado" #estado="ngModel" required minlength="5">
+        <input pInputText type="text" [(ngModel)]="pessoa.endereco.estado" name="estado" 
+          #estado="ngModel" required minlength="5">
 
         <app-message-required [controler]="estado"></app-message-required>
         <app-message-minimo-caracteres [controler]="estado"></app-message-minimo-caracteres> 
