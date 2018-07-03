@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 import { ToastyService } from 'ng2-toasty';
 
@@ -30,10 +31,13 @@ export class LancamentosCadastroComponent implements OnInit {
     private errorHandlerService: ErrorHandlerService,
     private pessoaService: PessoaService,
     private lancamentoService: LancamentoService,
-    private toastService: ToastyService
+    private toastService: ToastyService,
+    private router: ActivatedRoute
   ) { }
 
   ngOnInit() {
+    console.log(this.router.snapshot.params['id']);
+
     this.listarCategorias();
     this.listarPessoas();
   }
