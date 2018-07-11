@@ -5,7 +5,7 @@
     <div class="ui-g">
 
       <div class="ui-g-12">
-        <h1>Novo Lançamento</h1>
+        <h1>{{editando ? 'Edição' : 'Novo'}} Lançamento</h1>
       </div>
 
       <div class="ui-g-12">
@@ -70,7 +70,7 @@
 
       <div class="ui-g-12">
         <button [disabled]="formLancamentos.invalid" pButton type="submit" label="Salvar"></button>
-        <button pButton type="button" label="Novo" class="ui-button-info"></button>
+        <button routerLink="/lancamentos/novo" pButton type="button" label="Novo" class="ui-button-info"></button>
         <a routerLink="/lancamentos">Voltar para a pesquisa</a>
       </div>
     </div>

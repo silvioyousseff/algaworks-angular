@@ -36,13 +36,25 @@ export class LancamentosCadastroComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    console.log(this.router.snapshot.params['id']);
+    const idLancamento = this.router.snapshot.params['id'];
+
+    if (idLancamento) {
+      this.getById(idLancamento);
+    }
 
     this.listarCategorias();
     this.listarPessoas();
   }
 
-  salvarLancamento(form: FormControl){
+  getById(id: number) {
+    this.lancamentoService.getById(id)
+      .then(lancamento => {
+        this.lancamento = lancamento;
+      })
+      .catch(error => this.errorHandlerService.handle(error))
+  }
+
+  salvarLancamento(form: FormControl) {
     this.lancamentoService.salvarLancamento(this.lancamento)
       .then(() => {
         this.toastService.success("Lançamento salvo com sucesso!");
@@ -53,7 +65,7 @@ export class LancamentosCadastroComponent implements OnInit {
       .catch(error => this.errorHandlerService.handle(error));
   }
 
-  listarPessoas(){
+  listarPessoas() {
     return this.pessoaService.listarTodas()
       .then(pessoas => {
         this.pessoas = pessoas.map(c => {
@@ -63,7 +75,7 @@ export class LancamentosCadastroComponent implements OnInit {
       .catch(error => this.errorHandlerService.handle(error));
   }
 
-  listarCategorias(){
+  listarCategorias() {
     return this.categoriaService.listarTodas()
       .then(categorias => {
         this.categorias = categorias.map(c => {
@@ -73,4 +85,7 @@ export class LancamentosCadastroComponent implements OnInit {
       .catch(error => this.errorHandlerService.handle(error));
   }
 
+  get editando(){
+    return Boolean(this.lancamento.id);
+  }
 }
