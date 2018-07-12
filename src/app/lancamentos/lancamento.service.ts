@@ -29,22 +29,22 @@ export class LancamentoService {
     params.set("page", filtro.pagina.toString());
     params.set("size", filtro.itensPorPagina.toString());
 
-    if(filtro.descricao){
+    if (filtro.descricao) {
       params.set("descricao", filtro.descricao);
     }
 
-    if(filtro.dataVencimentoInicio){
+    if (filtro.dataVencimentoInicio) {
       params.set("dataInicio", moment(filtro.dataVencimentoInicio).format("YYYY-MM-DD"));
     }
 
-    if(filtro.dataVencimentoFim){
+    if (filtro.dataVencimentoFim) {
       params.set("dataFim", moment(filtro.dataVencimentoFim).format("YYYY-MM-DD"));
     }
 
     return this.http.get(`${this.lancamentosUrl}?resumo&`, { headers, search: params })
       .toPromise()
       .then(response => {
-        const responseJson  = response.json();
+        const responseJson = response.json();
         const lancamentos = responseJson.content;
 
         const resultado = {
@@ -56,7 +56,7 @@ export class LancamentoService {
       })
   }
 
-  excluir(id: number): Promise<void>{
+  excluir(id: number): Promise<void> {
     const headers = new Headers();
     headers.append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');
 
@@ -80,8 +80,8 @@ export class LancamentoService {
     headers.append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');
     headers.append('Content-Type', 'application/json');
 
-    return this.http.put(`${this.lancamentosUrl}/${lancamento.id}`, 
-        JSON.stringify(lancamento), { headers })
+    return this.http.put(`${this.lancamentosUrl}/${lancamento.id}`,
+      JSON.stringify(lancamento), { headers })
       .toPromise()
       .then(response => {
         const lancamentoAlterado = response.json() as Lancamento;
@@ -118,5 +118,5 @@ export class LancamentoService {
       }
     }
   }
-  
+
 }
