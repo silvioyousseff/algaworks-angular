@@ -1,3 +1,4 @@
+import { Title } from '@angular/platform-browser';
 import { FormControl } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 
@@ -19,9 +20,12 @@ export class PessoasCadastroComponent implements OnInit {
   constructor(
     private errorHandlerService: ErrorHandlerService,
     private pessoaService: PessoaService,
-    private toastService: ToastyService) { }
+    private toastService: ToastyService,
+    private title: Title
+  ) { }
 
   ngOnInit() {
+    this.title.setTitle('Cadastro de Pessoas');
   }
 
   salvarPessoa(form: FormControl){
@@ -33,5 +37,9 @@ export class PessoasCadastroComponent implements OnInit {
         this.pessoa = new Pessoa();
       })
       .catch(error => this.errorHandlerService.handle(error));
+  }
+
+  atualizarTituloEdicao(){
+    this.title.setTitle(`Edição Lançamento: ${this.pessoa.nome}`);
   }
 }

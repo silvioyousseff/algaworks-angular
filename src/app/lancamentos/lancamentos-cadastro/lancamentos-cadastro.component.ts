@@ -1,3 +1,4 @@
+import { Title } from '@angular/platform-browser';
 import { Lancamento } from './../../core/model';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -33,10 +34,13 @@ export class LancamentosCadastroComponent implements OnInit {
     private lancamentoService: LancamentoService,
     private toastService: ToastyService,
     private activatedRoute: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private title: Title
   ) { }
 
   ngOnInit() {
+    this.title.setTitle('Cadastro de Lançamentos');
+
     const idLancamento = this.activatedRoute.snapshot.params['id'];
 
     if (idLancamento) {
@@ -51,6 +55,7 @@ export class LancamentosCadastroComponent implements OnInit {
     this.lancamentoService.getById(id)
       .then(lancamento => {
         this.lancamento = lancamento;
+        this.atualizarTituloEdicao();
       })
       .catch(error => this.errorHandlerService.handle(error))
   }
@@ -79,6 +84,8 @@ export class LancamentosCadastroComponent implements OnInit {
         this.toastService.success("Lançamento atualizado com sucesso!");
 
         this.lancamento = lancamento;
+
+        this.atualizarTituloEdicao();
       })
       .catch(error => this.errorHandlerService.handle(error));
   }
@@ -115,5 +122,9 @@ export class LancamentosCadastroComponent implements OnInit {
 
   get editando() {
     return Boolean(this.lancamento.id);
+  }
+
+  atualizarTituloEdicao(){
+    this.title.setTitle(`Edição Lançamento: ${this.lancamento.descricao}`);
   }
 }

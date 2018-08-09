@@ -44,9 +44,6 @@ import { SharedModule } from '../shared/shared.module';
     LancamentosPesquisaComponent,
     LancamentosCadastroComponent
   ],
-  exports: [
-    LancamentosPesquisaComponent,
-    LancamentosCadastroComponent
-  ]
+  exports: []
 })
 export class LancamentosModule { }
