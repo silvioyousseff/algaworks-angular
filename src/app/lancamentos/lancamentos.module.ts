@@ -1,4 +1,3 @@
-import { RouterModule } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -16,6 +15,7 @@ import { DataTableModule } from 'primeng/datatable';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 
+import { LancamentosRoutingModule } from './lancamentos-routing.module';
 import { LancamentosPesquisaComponent } from './lancamentos-pesquisa/lancamentos-pesquisa.component';
 import { LancamentosCadastroComponent } from './lancamentos-cadastro/lancamentos-cadastro.component';
 import { SharedModule } from '../shared/shared.module';
@@ -36,7 +36,7 @@ import { SharedModule } from '../shared/shared.module';
     DropdownModule,
     CurrencyMaskModule,
     InputMaskModule,
-    RouterModule,
+    LancamentosRoutingModule,
 
     SharedModule
   ],

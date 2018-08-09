@@ -5,7 +5,7 @@ import { Pessoa } from './../core/model';
 
 import 'rxjs/add/operator/toPromise';
 
-export class PessoaFiltro{
+export class PessoaFiltro {
   nome: string;
   pagina = 0;
   itensPorPagina = 5;
@@ -26,14 +26,14 @@ export class PessoaService {
     params.set("page", filtro.pagina.toString());
     params.set("size", filtro.itensPorPagina.toString());
 
-    if(filtro.nome){
+    if (filtro.nome) {
       params.set("nome", filtro.nome);
     }
 
     return this.http.get(`${this.pessoasUrl}`, { headers, search: params })
       .toPromise()
       .then(response => {
-        const responseJson  = response.json();
+        const responseJson = response.json();
         const pessoas = responseJson.content;
 
         const resultado = {
@@ -43,7 +43,7 @@ export class PessoaService {
 
         return resultado;
       })
-  } 
+  }
 
   listarTodas(): Promise<any> {
     const headers = new Headers();
@@ -54,7 +54,7 @@ export class PessoaService {
       .then(response => response.json().content)
   }
 
-  excluir(id: number): Promise<void>{
+  excluir(id: number): Promise<void> {
     const headers = new Headers();
     headers.append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');
 
@@ -81,6 +81,34 @@ export class PessoaService {
     return this.http.post(this.pessoasUrl, JSON.stringify(pessoa), { headers })
       .toPromise()
       .then(response => response.json());
+  }
+
+  atualizarPessoa(pessoa: Pessoa): Promise<Pessoa> {
+    const headers = new Headers();
+    headers.append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');
+    headers.append('Content-Type', 'application/json');
+
+    return this.http.put(`${this.pessoasUrl}/${pessoa.id}`,
+      JSON.stringify(pessoa), { headers })
+      .toPromise()
+      .then(response => {
+        const pessoaAlterado = response.json() as Pessoa;
+
+        return pessoaAlterado;
+      });
+  }
+
+  getById(id: number): Promise<Pessoa> {
+    const headers = new Headers();
+    headers.append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');
+
+    return this.http.get(`${this.pessoasUrl}/${id}`, { headers })
+      .toPromise()
+      .then(response => {
+        const pessoa = response.json() as Pessoa;
+
+        return pessoa;
+      });
   }
 
 }

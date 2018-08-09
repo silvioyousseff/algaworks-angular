@@ -5,7 +5,7 @@
     <div class="ui-g">
 
       <div class="ui-g-12">
-        <h1>Nova Pessoa</h1>
+        <h1>{{editando ? 'Edição' : 'Nova'}} Pessoa</h1>
       </div>
 
       <div class="ui-g-12 ui-sm-12 ui-fluid">
@@ -85,7 +85,7 @@
 
       <div class="ui-g-12">
         <button [disabled]="formPessoas.invalid" pButton type="submit" label="Salvar"></button>
-        <button pButton type="button" label="Novo" class="ui-button-info"></button>
+        <button (click)="novaPessoa(formPessoas);" pButton type="button" label="Novo" class="ui-button-info"></button>
         <a routerLink="/pessoas">Voltar para a pesquisa</a>
       </div>
       
