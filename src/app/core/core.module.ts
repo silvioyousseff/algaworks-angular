@@ -11,6 +11,7 @@ import { ConfirmationService } from 'primeng/components/common/confirmationservi
 import { registerLocaleData } from '@angular/common';
 import ptBr from '@angular/common/locales/pt';
 
+import { AuthService } from './../seguranca/auth.service';
 import { ErrorHandlerService } from './error-handler.service';
 import { NavbarComponent } from './navbar/navbar.component';
 import { PessoaService } from './../pessoas/pessoa.service';
@@ -37,8 +38,10 @@ registerLocaleData(ptBr);
     ErrorHandlerService,
     LancamentoService,
     PessoaService,
-    ConfirmationService,
     CategoriasService,
+    AuthService,
+
+    ConfirmationService,
     Title,
     { provide: LOCALE_ID, useValue: 'pt-PT' }
   ],
