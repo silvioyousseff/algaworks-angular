@@ -7,6 +7,7 @@ import { Title } from '@angular/platform-browser';
 import { ToastyModule } from 'ng2-toasty';
 import { ConfirmDialogModule } from 'primeng/components/confirmdialog/confirmdialog';
 import { ConfirmationService } from 'primeng/components/common/confirmationservice';
+import { JwtHelper } from 'angular2-jwt';
 
 import { registerLocaleData } from '@angular/common';
 import ptBr from '@angular/common/locales/pt';
@@ -42,6 +43,7 @@ registerLocaleData(ptBr);
     AuthService,
 
     ConfirmationService,
+    JwtHelper,
     Title,
     { provide: LOCALE_ID, useValue: 'pt-PT' }
   ],
