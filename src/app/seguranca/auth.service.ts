@@ -32,7 +32,15 @@ export class AuthService {
         console.log(this.jwtPayload);
       })
       .catch(response =>{
-        console.log("catch auth" + response);
+        if(response.status === 400){
+          const responseJson = response.json();
+
+          if(responseJson.error === "invalid_grant"){
+            return Promise.reject("Login ou senha inválidos!");
+          }
+        }
+
+        return Promise.reject(response);
       });
   }
 

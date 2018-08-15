@@ -46,7 +46,6 @@ export class PessoasPesquisaComponent implements OnInit {
   }
 
   listarTodas(){
-    console.log("listando todas");
     this.pessoaService.listarTodas()
       .then(pessoas => pessoas);
   }
