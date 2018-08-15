@@ -13,7 +13,7 @@ import { AuthHttp, AuthConfig } from '../../../node_modules/angular2-jwt';
 export function authHttpServiceFactory(http: Http, options: RequestOptions) {
   const config = new AuthConfig({
     globalHeaders: [
-      { "Content-Type" : "application/json" }
+      { "Content-Type": "application/json" }
     ]
   });
 

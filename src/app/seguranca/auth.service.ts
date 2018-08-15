@@ -29,7 +29,6 @@ export class AuthService {
       .toPromise()
       .then(response =>{
         this.armazenarToken(response.json().access_token);
-        console.log(this.jwtPayload);
       })
       .catch(response =>{
         if(response.status === 400){
