@@ -15,7 +15,7 @@ export class AuthService {
     private http: Http,
     private jwtHelper: JwtHelper
   ) { 
-    this.recuperarToken();
+    this.recuperarTokenLocalStorage();
   }
 
   login(usuario: string, senha: string): Promise<void>{
@@ -25,10 +25,10 @@ export class AuthService {
 
     const body = `username=${usuario}&password=${senha}&grant_type=password`;
 
-    return this.http.post(this.tokenUrl, body, {headers})
+    return this.http.post(this.tokenUrl, body, {headers, withCredentials: true})
       .toPromise()
       .then(response =>{
-        this.armazenarToken(response.json().access_token);
+        this.armazenarTokenLocalStorage(response.json().access_token);
       })
       .catch(response =>{
         if(response.status === 400){
@@ -43,16 +43,43 @@ export class AuthService {
       });
   }
 
-  armazenarToken(token: string){
+  obterNovoAccessToken(): Promise<void>{
+    const headers = new Headers;
+    headers.append("Content-Type", "application/x-www-form-urlencoded");
+    headers.append("Authorization", "Basic YW5ndWxhcjphbmd1bGFy");
+
+    const body = "grant_type=refresh_token";
+
+    return this.http.post(this.tokenUrl, body, {headers, withCredentials: true})
+      .toPromise()
+      .then(response =>{
+        console.log("Antigo access_token "+ localStorage.getItem("token"));
+        
+        this.armazenarTokenLocalStorage(response.json().access_token);
+        console.log("Novo access_token " + response.json().access_token);
+
+        return Promise.resolve(null);
+      })
+      .catch(response =>{
+        console.error("Erro recuperar access_token", response);
+        return Promise.resolve(null);
+      });
+  }
+
+  armazenarTokenLocalStorage(token: string){
     this.jwtPayload = this.jwtHelper.decodeToken(token);
     localStorage.setItem("token", token);
   }
 
-  recuperarToken(){
+  recuperarTokenLocalStorage(){
     const token = localStorage.getItem("token");
 
     if(token){
-      this.armazenarToken(token);
+      this.armazenarTokenLocalStorage(token);
     }
+  }
+
+  usuarioTemPermissao(permissao: string){
+    return this.jwtPayload && this.jwtPayload.authorities.includes(permissao);
   }
 }
