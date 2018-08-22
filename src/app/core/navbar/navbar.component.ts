@@ -19,8 +19,4 @@ export class NavbarComponent implements OnInit {
   hidenMenu(){
     this.exibindoMenu = false;
   }
-
-  criarNovoAccessToken(){
-    this.authService.obterNovoAccessToken();
-  }
 }

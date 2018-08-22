@@ -6,18 +6,20 @@ import { CommonModule } from '@angular/common';
 import { ButtonModule } from 'primeng/components/button/button';
 import { InputTextModule } from 'primeng/components/inputtext/inputtext';
 
+import { AuthService } from './auth.service';
+import { WrapperAuthHttp } from './wrapper-auth-http';
 import { SegurancaRoutingModule } from './seguranca-routing.module';
 import { LoginFormComponent } from './login-form/login-form.component';
 import { AuthHttp, AuthConfig } from '../../../node_modules/angular2-jwt';
 
-export function authHttpServiceFactory(http: Http, options: RequestOptions) {
+export function authHttpServiceFactory(authService: AuthService, http: Http, options: RequestOptions) {
   const config = new AuthConfig({
     globalHeaders: [
       { "Content-Type": "application/json" }
     ]
   });
 
-  return new AuthHttp(config, http, options);
+  return new WrapperAuthHttp(authService, config, http, options);
 }
 
 @NgModule({
@@ -35,7 +37,7 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     {
       provide: AuthHttp,
       useFactory: authHttpServiceFactory,
-      deps: [Http, RequestOptions]
+      deps: [AuthService, Http, RequestOptions]
     }
   ]
 })

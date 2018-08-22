@@ -5,6 +5,7 @@ import { LazyLoadEvent } from 'primeng/components/common/lazyloadevent';
 import { ToastyService } from 'ng2-toasty';
 import { ConfirmationService } from 'primeng/components/common/confirmationservice';
 
+import { AuthService } from './../../seguranca/auth.service';
 import { ErrorHandlerService } from './../../core/error-handler.service';
 import { LancamentoService, LancamentoFiltro } from './../lancamento.service';
 
@@ -26,7 +27,8 @@ export class LancamentosPesquisaComponent implements OnInit {
     private toastyService: ToastyService,
     private confirmation: ConfirmationService,
     private errorHandlerService: ErrorHandlerService,
-    private title: Title
+    private title: Title,
+    private authService: AuthService
   ) { }
 
   ngOnInit() {

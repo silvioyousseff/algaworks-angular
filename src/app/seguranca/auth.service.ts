@@ -53,17 +53,19 @@ export class AuthService {
     return this.http.post(this.tokenUrl, body, {headers, withCredentials: true})
       .toPromise()
       .then(response =>{
-        console.log("Antigo access_token "+ localStorage.getItem("token"));
-        
         this.armazenarTokenLocalStorage(response.json().access_token);
-        console.log("Novo access_token " + response.json().access_token);
-
         return Promise.resolve(null);
       })
       .catch(response =>{
         console.error("Erro recuperar access_token", response);
         return Promise.resolve(null);
       });
+  }
+
+  isAccessTokenInvalido(){
+    const token = localStorage.getItem("token");
+
+    return !token || this.jwtHelper.isTokenExpired(token);
   }
 
   armazenarTokenLocalStorage(token: string){
@@ -79,7 +81,7 @@ export class AuthService {
     }
   }
 
-  usuarioTemPermissao(permissao: string){
+  isUsuarioTemPermissao(permissao: string){
     return this.jwtPayload && this.jwtPayload.authorities.includes(permissao);
   }
 }
