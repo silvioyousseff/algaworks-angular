@@ -44,8 +44,10 @@
         <p-column styleClass="col-acoes">
           <ng-template pTemplate="body"  let-pess="rowData">
             <button pButton icon="fa-pencil" pTooltip="Editar" 
-              [routerLink]="['/pessoas', pess.id]" tooltipPosition="top"></button>
-            <button pButton icon="fa-trash" (click)="confirmarExclusao(pess);" pTooltip="Excluir" tooltipPosition="top"></button>
+              [routerLink]="['/pessoas', pess.id]" tooltipPosition="top"
+              [disabled]="!authService.isUsuarioTemPermissao('ROLE_CADASTRAR_PESSOA')"></button>
+            <button pButton icon="fa-trash" (click)="confirmarExclusao(pess);" pTooltip="Excluir" tooltipPosition="top"
+              [disabled]="!authService.isUsuarioTemPermissao('ROLE_REMOVER_PESSOA')"></button>
           </ng-template>
         </p-column>
       </p-dataTable>
@@ -53,7 +55,8 @@
     </div>
 
     <div class="ui-g-12">
-      <a pButton routerLink="/pessoas/novo" label="Nova Pessoa"></a>
+      <a pButton routerLink="/pessoas/novo" label="Nova Pessoa"
+      [style.pointer-events]="!authService.isUsuarioTemPermissao('ROLE_CADASTRAR_PESSOA') ? 'none' : 'auto'"></a>
     </div>
 
   </div>

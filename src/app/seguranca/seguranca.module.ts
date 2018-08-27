@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 import { ButtonModule } from 'primeng/components/button/button';
 import { InputTextModule } from 'primeng/components/inputtext/inputtext';
 
+import { AuthGuard } from './auth.guard';
 import { AuthService } from './auth.service';
 import { WrapperAuthHttp } from './wrapper-auth-http';
 import { SegurancaRoutingModule } from './seguranca-routing.module';
@@ -38,7 +39,8 @@ export function authHttpServiceFactory(authService: AuthService, http: Http, opt
       provide: AuthHttp,
       useFactory: authHttpServiceFactory,
       deps: [AuthService, Http, RequestOptions]
-    }
+    },
+    AuthGuard
   ]
 })
 export class SegurancaModule { }

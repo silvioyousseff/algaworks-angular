@@ -6,6 +6,7 @@ import { ConfirmationService } from 'primeng/components/common/confirmationservi
 import { ToastyService } from 'ng2-toasty';
 import { LazyLoadEvent } from 'primeng/components/common/lazyloadevent';
 
+import { AuthService } from './../../seguranca/auth.service';
 import { PessoaFiltro, PessoaService } from './../pessoa.service';
 
 @Component({
@@ -26,6 +27,7 @@ export class PessoasPesquisaComponent implements OnInit {
     private toastyService: ToastyService,
     private confirmation: ConfirmationService,
     private errorHandlerService: ErrorHandlerService,
+    private authService: AuthService,
     private title: Title
   ) { }
 

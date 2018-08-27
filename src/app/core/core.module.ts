@@ -18,6 +18,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { PessoaService } from './../pessoas/pessoa.service';
 import { LancamentoService } from './../lancamentos/lancamento.service';
 import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada.component';
+import { NaoAutorizadoComponent } from './nao-autorizado-component';
 
 registerLocaleData(ptBr);
 
@@ -25,11 +26,15 @@ registerLocaleData(ptBr);
   imports: [
     CommonModule,
     RouterModule,
-    
+
     ToastyModule.forRoot(),
     ConfirmDialogModule
   ],
-  declarations: [NavbarComponent, PaginaNaoEncontradaComponent],
+  declarations: [
+    NavbarComponent,
+    PaginaNaoEncontradaComponent,
+    NaoAutorizadoComponent
+  ],
   exports: [
     NavbarComponent,
     ToastyModule,
