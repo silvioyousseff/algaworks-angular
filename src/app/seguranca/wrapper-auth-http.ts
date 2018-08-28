@@ -6,6 +6,8 @@ import { Observable } from 'rxjs/Observable';
 
 import { AuthService } from './auth.service';
 
+export class FalhaAutenticacaoError { }
+
 @Injectable()
 export class WrapperAuthHttp extends AuthHttp {
 
@@ -51,6 +53,10 @@ export class WrapperAuthHttp extends AuthHttp {
 
             const chamadaNovoAccessToken = this.authService.obterNovoAccessToken()
                 .then(() => {
+                    if(this.authService.isAccessTokenInvalido){
+                        throw new FalhaAutenticacaoError();
+                    }
+
                     return fn().toPromise();
                 });
 

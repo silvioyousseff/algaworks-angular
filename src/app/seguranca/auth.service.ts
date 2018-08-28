@@ -81,6 +81,11 @@ export class AuthService {
     }
   }
 
+  removerTokenLocalStorage() {
+    localStorage.removeItem('token');
+    this.jwtPayload = null;
+  }
+
   isUsuarioTemPermissao(permissao: string) {
     return this.jwtPayload && this.jwtPayload.authorities.includes(permissao);
   }
