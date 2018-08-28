@@ -27,7 +27,7 @@ export class PessoasPesquisaComponent implements OnInit {
     private toastyService: ToastyService,
     private confirmation: ConfirmationService,
     private errorHandlerService: ErrorHandlerService,
-    private authService: AuthService,
+    public authService: AuthService,
     private title: Title
   ) { }
 

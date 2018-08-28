@@ -5,16 +5,19 @@ import { JwtHelper } from 'angular2-jwt';
 
 import 'rxjs/add/operator/toPromise';
 
+import { environment } from './../../environments/environment';
+
 @Injectable()
 export class AuthService {
 
-  tokenUrl: string = "http://localhost:8080/oauth/token";
+  tokenUrl: string;
   jwtPayload: any;
 
   constructor(
     private http: Http,
     private jwtHelper: JwtHelper
   ) {
+    this.tokenUrl = `${environment.apiUrl}/oauth/token`;
     this.recuperarTokenLocalStorage();
   }
 
